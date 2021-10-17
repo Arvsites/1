@@ -11,39 +11,25 @@ void loop(){
   delay(2000);
 }
 */
-#include "Wire.h"
-
-const int MPU_addr = 0x68; // адрес датчика
-// массив данных
-// [accX, accY, accZ, temp, gyrX, gyrY, gyrZ]
-// acc - ускорение, gyr - угловая скорость, temp - температура (raw)
-int16_t data[7];  
-void getData() {
-  Wire.beginTransmission(MPU_addr);
-  Wire.write(0x3B);  // starting with register 0x3B (ACCEL_XOUT_H)
-  Wire.endTransmission(false);
-  Wire.requestFrom(MPU_addr, 14, true); // request a total of 14 registers
-  for (byte i = 0; i < 7; i++) {
-    data[i] = Wire.read() << 8 | Wire.read();
-  }
-}
+#include "MPU6050.h"
+MPU6050 mpu;
+int16_t ax, ay, az;
+int16_t gx, gy, gz;
 void setup() {
-  // инициализация
   Wire.begin();
-  Wire.beginTransmission(MPU_addr);
-  Wire.write(0x6B);  // PWR_MGMT_1 register
-  Wire.write(0);     // set to zero (wakes up the MPU-6050)
-  Wire.endTransmission(true);
-  
   Serial.begin(9600);
+  mpu.initialize();
+  // состояние соединения
+  Serial.println(mpu.testConnection() ? "MPU6050 OK" : "MPU6050 FAIL");
+  delay(1000);
 }
 void loop() {
-  getData();  // получаем
-  // выводим 
-  for (byte i = 0; i < 7; i++) {
-    Serial.print(data[i]);
-    Serial.print('\t');
-  }
-  Serial.println();
-  delay(200);
+  mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
+  Serial.print(ax); Serial.print('\t');
+  Serial.print(ay); Serial.print('\t');
+  Serial.print(az); Serial.print('\t');
+  Serial.print(gx); Serial.print('\t');
+  Serial.print(gy); Serial.print('\t');
+  Serial.println(gz);
+  delay(5);
 }
