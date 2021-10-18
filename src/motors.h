@@ -4,6 +4,7 @@ int m1[] = {12,13,14}, //step, dir, enable
     m3[] = {12,13,14},
     m4[] = {12,13,14};
 
+
 void motor_begin(){
     pinMode(12,OUTPUT);
     pinMode(12, OUTPUT);
