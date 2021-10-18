@@ -5,6 +5,7 @@ MPU6050 mpu;
 uint8_t fifoBuffer[45];         // буфер
 
 void mpu6050_begin() {
+  
   Wire.begin();
   //Wire.setClock(1000000UL);   // разгоняем шину на максимум
   // инициализация DMP
