@@ -14,7 +14,7 @@ void mpu6050_begin() {
   mpu.setDMPEnabled(true);
 }
 
-int mpu6050() {
+float mpu6050() {
   static uint32_t tmr;
   if (millis() - tmr >= 11) {  // таймер на 11 мс (на всякий случай)
     if (mpu.dmpGetCurrentFIFOPacket(fifoBuffer)) {
@@ -29,7 +29,7 @@ int mpu6050() {
       mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
 
       // выводим результат в радианах (-3.14, 3.14)
-      Serial.print(ypr[0]); // вокруг оси Z
+      //Serial.print(ypr[0]); // вокруг оси Z
       /*
       Serial.print(',');
       Serial.print(ypr[1]); // вокруг оси Y
@@ -40,6 +40,9 @@ int mpu6050() {
       // для градусов можно использовать degrees()
 
       tmr = millis();  // сброс таймера
+      return (ypr[0]);
     }
+    
   }
+
 }

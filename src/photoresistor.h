@@ -1,10 +1,11 @@
 #include <TroykaLight.h>
 TroykaLight sensorLight(A14);
 
-void photoresisrot()    {
+float photoresisrot()    {
     // считывание данных с датчика освещённости
     sensorLight.read();
     // вывод показателей сенсора освещённости в люксахи
-    Serial.println(sensorLight.getLightLux());
+    //Serial.println(sensorLight.getLightLux());
     //delay(300);
+    return(sensorLight.getLightLux());
 }

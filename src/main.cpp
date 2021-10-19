@@ -4,6 +4,7 @@
 #include "photoresistor.h"
 #include "motors.h"
 
+String res ="";
 //*
 void setup(){
   
@@ -18,8 +19,15 @@ void loop(){
   //mpu6050();      //гироском-акселерометр
   //t_and_h();      //температура-влажность
   //photoresisrot();      //освещенность
-
-  
+  res = "d";
+  res += (String) mpu6050();
+  res += ",";
+  res += (String) photoresisrot();
+  res += ",";
+  res += (String) t_and_h();
+  res += ";";
+  Serial.println(res);
+  delay (300);
 }
 //*/
 
