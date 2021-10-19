@@ -24,10 +24,12 @@ void loop(){
   res += ",";
   res += (String) photoresisrot();
   res += ",";
-  res += (String) t_and_h();
+  res += (String) tem();
+  res += ",";
+  res += (String) hum();
   res += ";";
   Serial.println(res);
-  delay (300);
+  delay (100);
 }
 //*/
 

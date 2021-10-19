@@ -40,7 +40,7 @@ float mpu6050() {
       // для градусов можно использовать degrees()
 
       tmr = millis();  // сброс таймера
-      return (ypr[0]);
+      return (ypr[0]+3.14);
     }
     
   }
