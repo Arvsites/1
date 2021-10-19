@@ -2,13 +2,13 @@
 #include <t_and_h.h>
 #include "mpu6050.h"
 #include "photoresistor.h"
-//#include "motors.h"
+#include "motors.h"
 
 //*
 void setup(){
   
   mpu6050_begin();
-  //motor_begin();
+  motor_begin();
 
   Serial.begin(115200);
   delay(3000);              // выполняем задержку для перехода датчиков в активное состояние

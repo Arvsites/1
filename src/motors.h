@@ -1,21 +1,11 @@
 
-int m1[] = {12,13,14}, //step, dir, enable
-    m2[] = {12,13,14},
-    m3[] = {12,13,14},
-    m4[] = {12,13,14};
+int motor[4][2] = {{44,45},{46,47},{48,49},{50,51}}; //motor 1,2,3,4; [enable], [dir];
 
 
 void motor_begin(){
-    pinMode(12,OUTPUT);
-    pinMode(12, OUTPUT);
-    for (int i=1;i<4;i++)
-        pinMode(m1[i], OUTPUT);
-    for (int i=1;i<4;i++)
-        pinMode(m2[i], OUTPUT);
-    for (int i=1;i<4;i++)
-        pinMode(m3[i], OUTPUT);
-    for (int i=1;i<4;i++)
-        pinMode(m4[i], OUTPUT);
+    for (int i=0;i<4;i++)
+        for (int j=0;j<2;j++)
+            pinMode(motor[i][j], OUTPUT);
 }
 
 void straight (int t, bool direction, int speed){
