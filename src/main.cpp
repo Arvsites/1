@@ -19,16 +19,9 @@ void setup(){
 
 void loop(){
   
-   Serial.println(mpu6050());
-  // Serial.print(' ');
-  // Serial.print(hum());
-  // Serial.print(' ');
-  // Serial.print(tem());
-  // Serial.print(' ');
-  // Serial.println(photoresisrot());
-  // delay(400);
   //mpu6050();      //гироском-акселерометр
   //tem();      //температура-влажность
+  //hum();
   //photoresisrot();      //освещенность
   
   if (Serial.available()>0){
@@ -48,20 +41,18 @@ void loop(){
         Serial.println(res);
         val = 0;
         break;
-      case 'f':
-        straight(1, 0);
+      case 'g':   //go прямая езда веперед
+        go(-1, val);
         break;
-      case 'b':
-        straight(-1, 0);
+      case 'b':   //back прямая езда назад
+        go(1, val);
         break;
-      case 'r':
-        turn(180);
-        break;
-      case 'l':
-
+      case 't':   // -3.14 < turn < 3.14 разворот
+        turn(val);
+        key = 'a';
         break;
       case 's':
-        straight(0, 1);
+        go(0, 1);
         break;
       default:
         break;

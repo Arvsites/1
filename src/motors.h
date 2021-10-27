@@ -7,7 +7,7 @@ void motor_begin(){
             pinMode(motor[i][j], OUTPUT);
 }
 
-void straight (bool dir, int enable){
+void go (bool dir, int enable){
     if (enable == 1){
         digitalWrite(motor[0][1], 1);
         digitalWrite(motor[1][1], 1);
@@ -37,6 +37,7 @@ void straight (bool dir, int enable){
 
 
 void turn (float rad){
+    
     mpu.initialize();
     mpu.dmpInitialize();
     mpu.setDMPEnabled(true);
@@ -44,7 +45,9 @@ void turn (float rad){
     digitalWrite(motor[1][1], 0);
     digitalWrite(motor[2][1], 0);
     digitalWrite(motor[3][1], 0);
-    if (rad >= 0){
+    Serial.println("hello");
+    Serial.println(mpu6050());
+    if (rad >= 0 and rad <=3.14){
         digitalWrite(motor[0][1], 1);   //включаем поворот двигателей по часовой стрелки
         digitalWrite(motor[1][1], 1);
         digitalWrite(motor[2][1], 1);
@@ -57,9 +60,9 @@ void turn (float rad){
         digitalWrite(motor[1][1], 0);
         digitalWrite(motor[2][1], 0);
         digitalWrite(motor[3][1], 0);
-        Serial.println('ок');
+        Serial.println("hello2");
     }
-    if (rad < 0){
+    if (rad < 0 and rad >= -3.14){
         digitalWrite(motor[0][1], 1);   //включаем поворот двигателей против часовой стрелки
         digitalWrite(motor[1][1], 1);
         digitalWrite(motor[2][1], 1);
@@ -72,6 +75,7 @@ void turn (float rad){
         digitalWrite(motor[1][1], 0);
         digitalWrite(motor[2][1], 0);
         digitalWrite(motor[3][1], 0);
-        Serial.println('ок');
+        Serial.println("hello3");
+        // Serial.println(mpu6050());
     }
 }

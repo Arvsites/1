@@ -35,7 +35,7 @@ float mpu6050() {
       Serial.print(',');
       Serial.print(ypr[2]); // вокруг оси X
       */
-      Serial.println();
+      //Serial.println();
       // для градусов можно использовать degrees()
 
       tmr = millis();  // сброс таймера
