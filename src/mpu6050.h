@@ -1,7 +1,6 @@
 #include "I2Cdev.h"
 #include "MPU6050_6Axis_MotionApps20.h"
 MPU6050 mpu;
-
 uint8_t fifoBuffer[45];         // буфер
 
 void mpu6050_begin() {
@@ -40,7 +39,8 @@ float mpu6050() {
       // для градусов можно использовать degrees()
 
       tmr = millis();  // сброс таймера
-      return (ypr[0]+3.14);
+      
+      return (ypr[0]);
     }
     
   }

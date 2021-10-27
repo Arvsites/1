@@ -13,11 +13,13 @@ void setup(){
 
   Serial.begin(115200);
   delay(3000);              // выполняем задержку для перехода датчиков в активное состояние
-  Serial.setTimeout(100);
+  Serial.setTimeout(1000);
   
 }
+
 void loop(){
-  // Serial.print(mpu6050());
+  
+   Serial.println(mpu6050());
   // Serial.print(' ');
   // Serial.print(hum());
   // Serial.print(' ');
@@ -28,14 +30,15 @@ void loop(){
   //mpu6050();      //гироском-акселерометр
   //tem();      //температура-влажность
   //photoresisrot();      //освещенность
+  
   if (Serial.available()>0){
     char key = Serial.read();
     int val = Serial.parseInt();
     switch (key) {
       case 'd':
         res = "d";
-        res += (String) mpu6050();
-        res += ",";
+        // res += (String) mpu6050();
+        // res += ",";
         res += (String) photoresisrot();
         res += ",";
         res += (String) tem();
@@ -45,7 +48,21 @@ void loop(){
         Serial.println(res);
         val = 0;
         break;
-      
+      case 'f':
+        straight(1, 0);
+        break;
+      case 'b':
+        straight(-1, 0);
+        break;
+      case 'r':
+        turn(180);
+        break;
+      case 'l':
+
+        break;
+      case 's':
+        straight(0, 1);
+        break;
       default:
         break;
     }
